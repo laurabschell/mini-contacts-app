@@ -1,42 +1,49 @@
 import React, { useState, useEffect } from "react";
+import Users from "./components/Users/Users";
+import Pagination from "./components/Pagination/Pagination";
 import axios from "axios";
-import Posts from "./components/Posts";
-import Pagination from "./components/Pagination";
 
-function App() {
-  const [posts, setPosts] = useState([]);
+const App = () => {
+  const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(10);
+  const [usersPerPage] = useState(8);
 
   useEffect(() => {
-    const fetchPosts = async () => {
+    const fetchUsers = async () => {
       setLoading(true);
-      const res = await axios.get("https://jsonplaceholder.typicode.com/posts");
-      setPosts(res.data);
+      const res = await axios.get(
+        "https://reqres.in/api/users?page=1&per_page=12"
+      );
+      setUsers(res.data.data);
       setLoading(false);
     };
 
-    fetchPosts();
+    fetchUsers();
   }, []);
 
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+  console.log(users);
 
+  // Get current posts
+  const indexOfLastUser = currentPage * usersPerPage;
+  const indexOfFirstUser = indexOfLastUser - usersPerPage;
+  const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
+
+  // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  console.log(users);
 
   return (
-    <div className="App">
-      <h1>My APP</h1>
-      <Posts posts={currentPosts} loading={loading} />
+    <div className="container mt-5">
+      <h1 className="text-primary mb-3">My Blog</h1>
+      <Users users={currentUsers} loading={loading} />
       <Pagination
-        totalPosts={posts.length}
-        postsPerPage={postsPerPage}
+        usersPerPage={usersPerPage}
+        totalUsers={users.length}
         paginate={paginate}
       />
     </div>
   );
-}
+};
 
 export default App;
