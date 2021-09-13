@@ -1,5 +1,5 @@
 import React from "react";
-import { stylesheet } from "../../src/stylesheet.css";
+import "../../../src/stylesheet.css";
 
 const Users = ({ users, loading }) => {
   if (loading) {
