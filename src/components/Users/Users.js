@@ -1,9 +1,13 @@
 import React from "react";
 import "../../../src/stylesheet.css";
 
-const Users = ({ users, loading }) => {
+const Users = ({ users, loading, error }) => {
   if (loading) {
-    return <h2>Loading...</h2>;
+    return <h2>Loading... Please wait</h2>;
+  }
+
+  if (error) {
+    return <h2>Ups... There's been an error</h2>;
   }
 
   console.log(users);

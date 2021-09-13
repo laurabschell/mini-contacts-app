@@ -1,45 +1,35 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Users from "./components/Users/Users";
 import Pagination from "./components/Pagination/Pagination";
-import axios from "axios";
+import useGetUsers from "./hooks/useGetUsers";
+import { useSelector } from "react-redux";
 
 const App = () => {
-  const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [usersPerPage] = useState(8);
+  const [usersPerPage] = useState(4);
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-      setLoading(true);
-      const res = await axios.get(
-        "https://reqres.in/api/users?page=1&per_page=12"
-      );
-      setUsers(res.data.data);
-      setLoading(false);
-    };
+  useGetUsers();
+  const contactsList = useSelector((state) => state.usersReducer.contactsList);
+  const error = useSelector((state) => state.usersReducer.error);
+  const loading = useSelector((state) => state.usersReducer.loading);
+  console.log(contactsList);
+  console.log(error);
+  console.log(loading);
 
-    fetchUsers();
-  }, []);
-
-  console.log(users);
-
-  // Get current posts
   const indexOfLastUser = currentPage * usersPerPage;
   const indexOfFirstUser = indexOfLastUser - usersPerPage;
-  const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
+  const currentUsers = contactsList.slice(indexOfFirstUser, indexOfLastUser);
 
-  // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-  console.log(users);
+  console.log(currentUsers);
 
   return (
     <div className="container mt-5">
       <h1 className="text-primary mb-3">My Blog</h1>
-      <Users users={currentUsers} loading={loading} />
+      <Users users={currentUsers} error={error} loading={loading} />
       <Pagination
         usersPerPage={usersPerPage}
-        totalUsers={users.length}
+        totalUsers={contactsList.length}
         paginate={paginate}
       />
     </div>
