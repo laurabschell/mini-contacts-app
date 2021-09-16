@@ -4,10 +4,10 @@ export const getUsersRequest = () => {
   };
 };
 
-export const getUsersSuccess = ({ contactsList }) => {
+export const getUsersSuccess = ({ users }) => {
   return {
     type: "GETUSERSSUCCESS",
-    payload: { contactsList },
+    payload: { users },
   };
 };
 
@@ -33,16 +33,16 @@ export const getUsersError = ({ error }) => {
 //   };
 // };
 
-// export const addToFav = (id, newFav) => {
-//   return {
-//     type: "ADD_TO_FAV",
-//     payload: { id, newFav },
-//   };
-// };
+export const addToFav = (id, newFav) => {
+  return {
+    type: "ADD_TO_FAV",
+    payload: { id, newFav },
+  };
+};
 
-// export const removeFromFav = (id, newFav) => {
-//   return {
-//     type: "REMOVE_FROM_FAV",
-//     payload: { id, newFav },
-//   };
-// };
+export const removeFromFav = (id, newFav) => {
+  return {
+    type: "REMOVE_FROM_FAV",
+    payload: { id, newFav },
+  };
+};

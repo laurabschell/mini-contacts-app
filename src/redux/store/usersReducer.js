@@ -1,6 +1,9 @@
 const initialState = {
-  contactsList: [],
-  favList: [],
+  users: [],
+  contactsTab: [],
+  favoritesTab: [],
+  favItems: [],
+  notFavItems: [],
   loading: false,
   error: false,
 };
@@ -16,7 +19,13 @@ const userReducer = (state = initialState, action) => {
     case "GETUSERSSUCCESS":
       return {
         ...state,
-        contactsList: action.payload.contactsList.data,
+        users: action.payload.users.data,
+        notFavItems: action.payload.users.data,
+        contactsTab: action.payload.users.data,
+        // .map((user) => ({
+        //   ...user,
+        //   is_favorite: false,
+        // })),
         loading: false,
       };
 
@@ -53,29 +62,39 @@ const userReducer = (state = initialState, action) => {
     //   };
     // }
 
-    // case "ADD_TO_FAV": {
-    //   return {
-    //     ...state,
-    //     favList: [...state.favList, action.payload.newFav],
-    //     contactsList: [
-    //       ...state.contactsList.filter(
-    //         (contact) => contact.id !== action.payload.id
-    //       ),
-    //     ],
-    //   };
-    // }
+    case "ADD_TO_FAV": {
+      return {
+        ...state,
+        favItems: [...state.favItems, action.payload.newFav],
+        notFavItems: [
+          ...state.notFavItems.filter((item) => item.id !== action.payload.id),
+        ],
+        favoritesTab: [...state.favoritesTab, action.payload.newFav],
+        contactsTab: state.contactsTab.map((item) =>
+          item.id === action.payload.id
+            ? { ...item, is_favorite: !item.is_favorite }
+            : item
+        ),
+      };
+    }
 
-    // case "REMOVE_FROM_FAV": {
-    //   return {
-    //     ...state,
-    //     contactsList: [...state.contactsList, action.payload.newFav],
-    //     favList: [
-    //       ...state.favList.filter(
-    //         (contact) => contact.id !== action.payload.id
-    //       ),
-    //     ],
-    //   };
-    // }
+    case "REMOVE_FROM_FAV": {
+      return {
+        ...state,
+        favItems: [
+          ...state.favItems.filter((item) => item.id !== action.payload.id),
+        ],
+        notFavItems: [...state.notFavItems, action.payload.newFav],
+        favoritesTab: [
+          ...state.favoritesTab.filter((item) => item.id !== action.payload.id),
+        ],
+        contactsTab: state.contactsTab.map((item) =>
+          item.id === action.payload.id
+            ? { ...item, is_favorite: !item.is_favorite }
+            : item
+        ),
+      };
+    }
 
     default:
       return state;

@@ -18,6 +18,10 @@
   margin: 0 1rem 1.5rem 1rem;
 }
 
+.fav {
+  background-color: #fc85f8;
+}
+
 .pagination-bar {
   font-size: 1.2rem;
   display: flex;
@@ -25,7 +29,7 @@
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   font-weight: 500;
-  color: rgb(88, 88, 88);
+  color: rgb(102, 102, 102);
 }
 
 .page-item {

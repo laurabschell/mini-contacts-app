@@ -1,4 +1,5 @@
 import React from "react";
+import "../../stylesheet.css";
 
 const Pagination = ({ usersPerPage, totalUsers, paginate }) => {
   const pageNumbers = [];
@@ -8,7 +9,7 @@ const Pagination = ({ usersPerPage, totalUsers, paginate }) => {
   }
 
   return (
-    <nav class="pagination-bar">
+    <nav className="pagination-bar">
       {pageNumbers.map((number) => (
         <div key={number} className="page-item">
           <p onClick={() => paginate(number)} className="page-link">
