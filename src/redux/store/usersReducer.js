@@ -58,7 +58,7 @@ const userReducer = (state = initialState, action) => {
         notFavItems: state.notFavItems.filter(
           (contact) => contact.id !== action.payload
         ),
-        favItems: state.notFavItems.filter(
+        favItems: state.favItems.filter(
           (contact) => contact.id !== action.payload
         ),
       };
