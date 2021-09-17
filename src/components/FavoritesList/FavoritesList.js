@@ -5,7 +5,7 @@ const FavoritesList = ({ items }) => {
   return (
     <div>
       <h2>Favorites Tab</h2>
-      <CardDisplay items={items} />
+      <CardDisplay items={items} noMain={true} />
     </div>
   );
 };

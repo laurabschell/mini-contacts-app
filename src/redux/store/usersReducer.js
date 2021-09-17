@@ -22,10 +22,6 @@ const userReducer = (state = initialState, action) => {
         users: action.payload.users.data,
         notFavItems: action.payload.users.data,
         contactsTab: action.payload.users.data,
-        // .map((user) => ({
-        //   ...user,
-        //   is_favorite: false,
-        // })),
         loading: false,
       };
 
@@ -51,16 +47,22 @@ const userReducer = (state = initialState, action) => {
     //   }
     // }
 
-    // case "REMOVE_CONTACT": {
-    //   return {
-    //     contactsList: state.contactsList.filter(
-    //       (contact) => contact.id !== action.payload
-    //     ),
-    //     favList: state.favList.filter(
-    //       (contact) => contact.id !== action.payload
-    //     ),
-    //   };
-    // }
+    case "REMOVE_CONTACT": {
+      return {
+        contactsTab: state.contactsTab.filter(
+          (contact) => contact.id !== action.payload
+        ),
+        favoritesTab: state.favoritesTab.filter(
+          (contact) => contact.id !== action.payload
+        ),
+        notFavItems: state.notFavItems.filter(
+          (contact) => contact.id !== action.payload
+        ),
+        favItems: state.notFavItems.filter(
+          (contact) => contact.id !== action.payload
+        ),
+      };
+    }
 
     case "ADD_TO_FAV": {
       return {

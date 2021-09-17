@@ -6,7 +6,7 @@ import axios from 'axios';
 const useGetUsers = () => {
     
     const dispatch = useDispatch();    
-    const api = 'https://reqres.in/api/users?page=1&per_page=4';
+    const api = 'https://reqres.in/api/users?page=1&per_page=12';
 
     useEffect(() => {
         dispatch(getUsersRequest());

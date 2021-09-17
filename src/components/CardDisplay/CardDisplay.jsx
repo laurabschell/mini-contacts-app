@@ -2,7 +2,7 @@ import React from 'react'
 import Card from '../Card/Card'
 
 
-const CardDisplay = ({items}) => {
+const CardDisplay = ({items, notMain}) => {
 
     console.log(items)
     return (
@@ -15,6 +15,7 @@ const CardDisplay = ({items}) => {
               user_email={user.email}
               user_is_favorite={user.is_favorite}
               user={user}
+              notMain={notMain}
             />
           ))
         }

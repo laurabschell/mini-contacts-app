@@ -1,6 +1,10 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { addToFav, removeFromFav } from "../../redux/actions/usersActions";
+import {
+  addToFav,
+  removeContact,
+  removeFromFav,
+} from "../../redux/actions/usersActions";
 
 const AddToFavButtonStyles = {
   backgroundColor: "#1E90FF",
@@ -13,6 +17,15 @@ const AddToFavButtonStyles = {
 
 const RemoveFromFavButtonStyles = {
   backgroundColor: "#C71585",
+  padding: ".5rem 1rem",
+  border: "none",
+  borderRadius: "10px",
+  color: "white",
+  cursor: "pointer",
+};
+
+const DeleteButtonStyles = {
+  backgroundColor: "#ff0e0e",
   padding: ".5rem 1rem",
   border: "none",
   borderRadius: "10px",
@@ -50,6 +63,14 @@ function Button(props) {
           }
         >
           remove from fav
+        </button>
+      )}
+      {props.notMain && (
+        <button
+          style={DeleteButtonStyles}
+          onClick={() => dispatch(removeContact(user.id))}
+        >
+          🗑️
         </button>
       )}
     </div>

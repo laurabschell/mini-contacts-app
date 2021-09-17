@@ -5,7 +5,7 @@ const ContactsList = ({ items }) => {
   return (
     <div>
       <h2>Contacts Tab</h2>
-      <CardDisplay items={items} />
+      <CardDisplay items={items} notMain={true} />
     </div>
   );
 };

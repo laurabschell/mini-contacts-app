@@ -26,12 +26,12 @@ export const getUsersError = ({ error }) => {
 //   };
 // };
 
-// export const removeContact = (id) => {
-//   return {
-//     type: "REMOVE_CONTACT",
-//     payload: id,
-//   };
-// };
+export const removeContact = (id) => {
+  return {
+    type: "REMOVE_CONTACT",
+    payload: id,
+  };
+};
 
 export const addToFav = (id, newFav) => {
   return {

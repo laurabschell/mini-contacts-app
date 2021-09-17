@@ -8,11 +8,7 @@ function Card(props) {
         {props.user_first_name} {props.user_last_name}
       </b>
       <p>{props.user_email}</p>
-      <Button
-        user={props.user}
-        favItems={props.favItems}
-        notFavItems={props.notFavItems}
-      />
+      <Button user={props.user} notMain={props.notMain} />
     </div>
   );
 }
